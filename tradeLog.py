@@ -4,6 +4,13 @@ import sys
 import os
 import matplotlib.pyplot as plt
 
+import StockData as SD
+
+#nvda = SD.Stock_Data('NVDA', 1.0, 3, 5)
+
+# TODO: How can I read .csv files from a different folder
+# TODO: Use class to track specific trades - Traded multiple stocks at the same time created issues
+
 
 def flipData(filePath, data):
   with open(filePath, mode='w', newline='') as textfile:
@@ -77,19 +84,23 @@ def trackTrades(data):
   print(' total comission')
   return income, total_comission
 
+
 if __name__ == '__main__':
   data = list(pandas.core.frame.DataFrame())
 
   track_total = list()
   
   directory = os.getcwd()
+  directory += 'Files/'
   for root,dirs,files in os.walk(directory):
+    print(root)
     files.sort()
     for file in files:
        if file.endswith(".csv"):
          print(file)
-         data.append(importData(file))
+         data.append(importData(root + file))
 
+  print(data)
   income, comission = float(), float()
   total_income = 25000.0
   total_comission = 0.0
