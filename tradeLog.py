@@ -3,7 +3,6 @@ import pandas
 import sys
 import os
 import matplotlib.pyplot as plt
-from collections import namedtuple
 
 
 def flipData(filePath, data):
@@ -85,6 +84,7 @@ if __name__ == '__main__':
   
   directory = os.getcwd()
   for root,dirs,files in os.walk(directory):
+    files.sort()
     for file in files:
        if file.endswith(".csv"):
          print(file)
